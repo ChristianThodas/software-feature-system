@@ -53,4 +53,32 @@ def Access(InputName,  Request):
 
   else:
     print("Access denied.")
-  
+
+print("Hello and welcome! Please type stop to stop.")
+
+while True:
+  Name = input("Your first name, please: ").strip()
+  if Name.lower() == "quit":
+    break
+  Password = input("Your password, please: ").strip()
+  if Name.lower() == "quit":
+    break
+  LoggedIn = Authentication(Name, Password)
+  if not LoggedIn:
+    continue
+
+  print(f"You are now logged in as {Name} ({Personal[Name]['Role']})")
+
+  while True:
+    Request = input("Request (View/Edit/Manage/Update) or 'logout': ").strip()
+    if Request.lower() == "logout":
+      print("Logged out.\n")
+      break
+      if Request.lower() == "quit":
+        raise SystemExit
+
+      Access(Name, Request)
+
+      if Request == "Update" and HasAccess(Name, "update"):
+        GetUpdates(f"{Name} has just completed an update.")
+        print("Notification has been forwarded")
