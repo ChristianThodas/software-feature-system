@@ -58,10 +58,10 @@ print("Hello and welcome! Please type stop to stop.")
 
 while True:
   Name = input("Your first name, please: ").strip()
-  if Name.lower() == "quit":
+  if Name.lower() == "stop":
     break
   Password = input("Your password, please: ").strip()
-  if Name.lower() == "quit":
+  if Password.lower() == "stop":
     break
   LoggedIn = Authentication(Name, Password)
   if not LoggedIn:
@@ -74,11 +74,12 @@ while True:
     if Request.lower() == "logout":
       print("Logged out.\n")
       break
-      if Request.lower() == "quit":
-        raise SystemExit
 
-      Access(Name, Request)
+    if Request.lower() == "stop":
+      raise SystemExit
 
-      if Request == "Update" and HasAccess(Name, "update"):
-        GetUpdates(f"{Name} has just completed an update.")
-        print("Notification has been forwarded")
+    Access(Name, Request)
+
+    if Request == "Update" and HasAccess(Name, "Update"):
+      GetUpdates(f"{Name} has just completed an update.")
+      print("Notification has been forwarded")
