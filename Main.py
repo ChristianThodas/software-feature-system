@@ -70,13 +70,19 @@ while True:
   print(f"You are now logged in as {Name} ({Personal[Name]['Role']})")
 
   while True:
-    Request = input("Request (View/Edit/Manage/Update) or 'logout': ").strip()
+    Request = input("Request (View/Edit/Manage/Update/ViewUpdates) or 'logout': ").strip()
     if Request.lower() == "logout":
       print("Logged out.\n")
       break
 
     if Request.lower() == "stop":
       raise SystemExit
+
+    if Request =="ViewUpdates":
+      print("Your notifications:")
+      for Message in NotifUpdates[Name]:
+        print(Message)
+      continue
 
     Access(Name, Request)
 
